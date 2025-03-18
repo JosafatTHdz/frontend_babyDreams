@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { isAxiosError } from 'axios';
-import type { RegisterForm } from '../types';
-import ErrorMessage from '../components/ErrorMessage';
-import { toast } from 'sonner';
-import api from '../config/axios';
+import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { isAxiosError } from 'axios'
+import type { RegisterForm } from '../types'
+import ErrorMessage from '../components/ErrorMessage'
+import { toast } from 'sonner'
+import api from '../config/axios'
 
 export default function RegisterView() {
+    const navigate = useNavigate();
     const initialValues: RegisterForm = {
         name: '',
         email: '',
@@ -14,19 +15,20 @@ export default function RegisterView() {
         phone: '',
         password: '',
         password_confirmation: ''
-    };
+    }
 
-    const { register, watch, reset, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
-    const password = watch('password');
+    const { register, watch, reset, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
+    const password = watch('password')
 
     const handleRegister = async (formData: RegisterForm) => {
         try {
-            const { data } = await api.post(`/auth/register`, formData);
+            const { data } = await api.post(`/auth/register`, formData)
             toast.success(data);
-            reset();
+            navigate('/auth/login')
+            reset()
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                toast.error(error.response.data.error);
+                toast.error(error.response.data.error)
                 console.log(error.response.data.error)
             }
         }
@@ -124,5 +126,5 @@ export default function RegisterView() {
                 </nav>
             </div>
         </div>
-    );
+    )
 }

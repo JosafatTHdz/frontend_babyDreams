@@ -2,16 +2,16 @@ import { FaBars, FaChevronDown, FaFacebook, FaInstagram, FaSearch, FaTimes } fro
 import { logoinv } from "../assets/img";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Toaster } from "sonner";
-import { User } from "../types";
-import { useState } from "react";
-import { logoutUser } from "../api/BabyDreamsAPI";
 import { useQueryClient } from "@tanstack/react-query";
+import { User } from "../types";
+import { logoutUser } from "../api/BabyDreamsAPI";
+import { useState } from "react";
 
-type BabyDreamsProps = {
-  user: User
+type PublicProps = {
+  user: User | null;
 }
 
-export default function Public({ user }: BabyDreamsProps) {
+export default function Public({ user }: PublicProps) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -61,7 +61,7 @@ export default function Public({ user }: BabyDreamsProps) {
                             Productos <FaChevronDown size={12} />
                         </button>
                         {menuOpen === "productos" && (
-                            <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40" onMouseLeave={() => setMenuOpen(null)}>
+                            <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-48 z-40" onMouseLeave={() => setMenuOpen(null)}>
                                 <Link to="/" className="block px-4 py-2 hover:bg-gray-200">Ver Productos</Link>
                                 <Link to="/category" className="block px-4 py-2 hover:bg-gray-200">Categorías</Link>
                                 {user?.role === "admin" && (
@@ -76,7 +76,7 @@ export default function Public({ user }: BabyDreamsProps) {
                             Información <FaChevronDown size={12} />
                         </button>
                         {menuOpen === "info" && (
-                            <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40" onMouseLeave={() => setMenuOpen(null)}>
+                            <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40 z-40" onMouseLeave={() => setMenuOpen(null)}>
                                 <Link to="/about" className="block px-4 py-2 hover:bg-gray-200">Conócenos</Link>
                                 <Link to="/contact" className="block px-4 py-2 hover:bg-gray-200">Contacto</Link>
                                 {user?.role === "admin" && (

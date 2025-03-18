@@ -5,24 +5,26 @@ import { LoginForm } from "../types";
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';
 import api from '../config/axios'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 
 const Login = () => {
-  
-    const initialValues : LoginForm = {
-        email: '',
-        password: ''
-    }
+  const navigate = useNavigate();
+  const initialValues: LoginForm = {
+    email: '',
+    password: ''
+  }
 
-  const { register, handleSubmit, formState: {errors} } = useForm({defaultValues : initialValues})
+  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
 
   const handleLogin = async (formData: LoginForm) => {
     try {
-        const {data} = await api.post(`/auth/login`, formData)
-        localStorage.setItem('AUTH_TOKEN', data)
+      const { data } = await api.post(`/auth/login`, formData)
+      localStorage.setItem('AUTH_TOKEN', data)
+      toast.success('Sesión iniciada correctamente')
+      navigate('/')
     } catch (error) {
-        if (isAxiosError(error) && error.response)
+      if (isAxiosError(error) && error.response)
         toast.error(error.response.data.error)
     }
   }
@@ -37,41 +39,41 @@ const Login = () => {
           <GoTriangleRight size={20} className="text-blue-500" />
         </div>
 
-        <form 
-            onSubmit={handleSubmit(handleLogin)} 
-            className="text-left mb-5"
-            noValidate
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          className="text-left mb-5"
+          noValidate
         >
-        <div>
-          <label className="block text-gray-700 font-semibold">Correo Electrónico</label>
-          <input
-            type="email"
-            className={`w-full p-3 border rounded-md outline-none transition-all border-gray-300`}
-            {...register("email", {
-              required: "El Email es obligatorio",
-              pattern: {
+          <div>
+            <label className="block text-gray-700 font-semibold">Correo Electrónico</label>
+            <input
+              type="email"
+              className={`w-full p-3 border rounded-md outline-none transition-all border-gray-300`}
+              {...register("email", {
+                required: "El Email es obligatorio",
+                pattern: {
                   value: /\S+@\S+\.\S+/,
                   message: "E-mail no válido",
-              },
-          })}
-          />
-          {errors.email && (
-            <ErrorMessage>{errors.email.message}</ErrorMessage>
-          )}
-        </div>
-        <div>
-          <label className="block text-gray-700 font-semibold mt-3">Contraseña</label>
-          <input
-            type="password"
-            className={`w-full p-3 border rounded-md outline-none transition-all border-gray-300`}
-            {...register("password", {
-              required: "El Password es obligatorio",
-          })}
-          />
-          {errors.password && (
-            <ErrorMessage>{errors.password.message}</ErrorMessage>
-          )}
-        </div>
+                },
+              })}
+            />
+            {errors.email && (
+              <ErrorMessage>{errors.email.message}</ErrorMessage>
+            )}
+          </div>
+          <div>
+            <label className="block text-gray-700 font-semibold mt-3">Contraseña</label>
+            <input
+              type="password"
+              className={`w-full p-3 border rounded-md outline-none transition-all border-gray-300`}
+              {...register("password", {
+                required: "El Password es obligatorio",
+              })}
+            />
+            {errors.password && (
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
+            )}
+          </div>
           <div className="text-right mb-4">
             <a href="/forgot-password" className="text-blue-500 text-sm">¿Olvidaste tu contraseña?</a>
           </div>

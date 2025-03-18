@@ -5,9 +5,10 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { User } from '../types';
 import { updateProfile } from '../api/BabyDreamsAPI';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 const EditProfile = () => {
-
+    const navigate = useNavigate()
     const queryClient = useQueryClient()
     const data : User = queryClient.getQueryData(['user'])!
  
@@ -16,6 +17,7 @@ const EditProfile = () => {
         name: data.name,
         email: data.email,
         phone: data.phone,
+        role: data.role
     }});
 
     const updateProfileMutation = useMutation({
@@ -90,13 +92,14 @@ const EditProfile = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-3 mt-5 text-white bg-blue-500 rounded-lg hover:bg-blue-600 font-bold text-lg transition duration-300"
+                        className="w-full py-3 mt-5 text-white bg-blue-500 rounded-lg hover:bg-blue-600 font-bold text-lg transition duration-300 cursor-pointer"
                     >
                         ACTUALIZAR PERFIL
                     </button>
                     <button
                         type="button"
-                        className="w-full py-3 mt-3 text-blue-600 border border-blue-500 rounded-lg hover:bg-blue-100 font-bold text-lg transition duration-300"
+                        className="w-full py-3 mt-3 text-blue-600 border border-blue-500 rounded-lg hover:bg-blue-100 font-bold text-lg transition duration-300 cursor-pointer"
+                        onClick={() => navigate(-1)}
                     >
                         VOLVER
                     </button>
