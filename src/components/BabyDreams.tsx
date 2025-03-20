@@ -91,6 +91,8 @@ export default function Public({ user }: BabyDreamsProps) {
 
               <Link to={'/admin/profile'}>Mi Perfil</Link>
 
+              <Link to={'admin/iot/control'}>IoT</Link>
+
               {user?.role === "admin" && (
                 <Link to="/admin" className="hover:text-gray-200">Admin</Link>
               )}
