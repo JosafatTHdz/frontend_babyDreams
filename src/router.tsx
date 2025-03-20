@@ -10,8 +10,10 @@ import RegisterProduct from './views/RegisterProductView'
 import CategoriesView from './views/CategoriesView'
 import CategoryProductsView from './views/CategoryProductsView'
 import ProductDetailView from './views/ProductView'
+import AdminProducts from './views/ProductAdminView'
 import AboutView from './views/AboutView'
 import AboutAdmin from './views/AboutAdminView'
+import CunaBalanceo from './views/ControlIoTView'
 
 export default function Router() {
     return(
@@ -25,7 +27,9 @@ export default function Router() {
                 <Route path='/admin' element={<MainLayout />}>
                     <Route path='profile' element={<EditProfile />} />
                     <Route path='product/register' element={<RegisterProduct />} />
+                    <Route path='product/modify' element={<AdminProducts />} />
                     <Route path='about/edit' element={<AboutAdmin />} />
+                    <Route path='iot/control' element={<CunaBalanceo />} />
                 </Route>
 
                 <Route element={<PublicLayout />} >

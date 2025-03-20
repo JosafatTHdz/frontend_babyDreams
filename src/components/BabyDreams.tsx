@@ -53,76 +53,79 @@ export default function Public({ user }: BabyDreamsProps) {
         </form>
 
         <nav className="bg-blue-400 text-white">
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <div className="container mx-auto px-4 py-3 flex justify-between items-center">
 
-                <div className="hidden md:flex space-x-6">
-                    <div className="relative group">
-                        <button onMouseEnter={() => toggleMenu("productos")} className="flex items-center gap-2">
-                            Productos <FaChevronDown size={12} />
-                        </button>
-                        {menuOpen === "productos" && (
-                            <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40" onMouseLeave={() => setMenuOpen(null)}>
-                                <Link to="/" className="block px-4 py-2 hover:bg-gray-200">Ver Productos</Link>
-                                <Link to="/category" className="block px-4 py-2 hover:bg-gray-200">Categorías</Link>
-                                {user?.role === "admin" && (
-                                  <Link to="/admin/product/register" className="block px-4 py-2 hover:bg-gray-200">Agregar Producto</Link>
-                                )}
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="relative group">
-                        <button onMouseEnter={() => toggleMenu("info")} className="flex items-center gap-2">
-                            Información <FaChevronDown size={12} />
-                        </button>
-                        {menuOpen === "info" && (
-                            <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40" onMouseLeave={() => setMenuOpen(null)}>
-                                <Link to="/about" className="block px-4 py-2 hover:bg-gray-200">Conócenos</Link>
-                                <Link to="/contact" className="block px-4 py-2 hover:bg-gray-200">Contacto</Link>
-                                {user?.role === "admin" && (
-                                  <Link to="/admin/about/edit" className="block px-4 py-2 hover:bg-gray-200">Administrar</Link>
-                                )}
-                            </div>
-                        )}
-                    </div>
-
-                    <Link to={'/admin/profile'}>Mi Perfil</Link>
-
+            <div className="hidden md:flex space-x-6">
+              <div className="relative group">
+                <button onMouseEnter={() => toggleMenu("productos")} className="flex items-center gap-2">
+                  Productos <FaChevronDown size={12} />
+                </button>
+                {menuOpen === "productos" && (
+                  <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40" onMouseLeave={() => setMenuOpen(null)}>
+                    <Link to="/" className="block px-4 py-2 hover:bg-gray-200">Ver Productos</Link>
+                    <Link to="/category" className="block px-4 py-2 hover:bg-gray-200">Categorías</Link>
                     {user?.role === "admin" && (
-                        <Link to="/admin" className="hover:text-gray-200">Admin</Link>
+                      <>
+                        <Link to="/admin/product/register" className="block px-4 py-2 hover:bg-gray-200">Agregar Producto</Link>
+                        <Link to="/admin/product/modify" className="block px-4 py-2 hover:bg-gray-200">Administrar</Link>
+                      </>
                     )}
+                  </div>
+                )}
+              </div>
 
-                    {/* Botón de inicio o cierre de sesión */}
-                    {user ? (
-                        <button onClick={handleLogout} className="hover:text-gray-200 cursor-pointer">Cerrar Sesión</button>
-                    ) : (
-                        <Link to="/auth/login" className="hover:text-gray-200">Iniciar Sesión</Link>
+              <div className="relative group">
+                <button onMouseEnter={() => toggleMenu("info")} className="flex items-center gap-2">
+                  Información <FaChevronDown size={12} />
+                </button>
+                {menuOpen === "info" && (
+                  <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40" onMouseLeave={() => setMenuOpen(null)}>
+                    <Link to="/about" className="block px-4 py-2 hover:bg-gray-200">Conócenos</Link>
+                    <Link to="/contact" className="block px-4 py-2 hover:bg-gray-200">Contacto</Link>
+                    {user?.role === "admin" && (
+                      <Link to="/admin/about/edit" className="block px-4 py-2 hover:bg-gray-200">Administrar</Link>
                     )}
-                </div>
+                  </div>
+                )}
+              </div>
 
-                {/* Menú Hamburguesa en móviles */}
-                <div className="md:hidden">
-                    <button onClick={() => setIsOpen(!isOpen)}>
-                        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                    </button>
-                </div>
+              <Link to={'/admin/profile'}>Mi Perfil</Link>
+
+              {user?.role === "admin" && (
+                <Link to="/admin" className="hover:text-gray-200">Admin</Link>
+              )}
+
+              {/* Botón de inicio o cierre de sesión */}
+              {user ? (
+                <button onClick={handleLogout} className="hover:text-gray-200 cursor-pointer">Cerrar Sesión</button>
+              ) : (
+                <Link to="/auth/login" className="hover:text-gray-200">Iniciar Sesión</Link>
+              )}
             </div>
 
-            {/* Menú Móvil */}
-            {isOpen && (
-                <div className="md:hidden bg-blue-600 text-white">
-                    <Link to="/products" className="block px-4 py-2 hover:bg-blue-700">Ver Productos</Link>
-                    <Link to="/categories" className="block px-4 py-2 hover:bg-blue-700">Categorías</Link>
-                    <Link to="/about" className="block px-4 py-2 hover:bg-blue-700">Conócenos</Link>
-                    <Link to="/contact" className="block px-4 py-2 hover:bg-blue-700">Contacto</Link>
-                    {user?.role === "admin" && <Link to="/admin" className="block px-4 py-2 hover:bg-blue-700">Admin</Link>}
-                    {user ? (
-                        <button onClick={handleLogout} className="block w-full text-left px-4 py-2 hover:bg-blue-700">Cerrar Sesión</button>
-                    ) : (
-                        <Link to="/auth/login" className="block px-4 py-2 hover:bg-blue-700">Iniciar Sesión</Link>
-                    )}
-                </div>
-            )}
+            {/* Menú Hamburguesa en móviles */}
+            <div className="md:hidden">
+              <button onClick={() => setIsOpen(!isOpen)}>
+                {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Menú Móvil */}
+          {isOpen && (
+            <div className="md:hidden bg-blue-600 text-white">
+              <Link to="/products" className="block px-4 py-2 hover:bg-blue-700">Ver Productos</Link>
+              <Link to="/categories" className="block px-4 py-2 hover:bg-blue-700">Categorías</Link>
+              <Link to="/about" className="block px-4 py-2 hover:bg-blue-700">Conócenos</Link>
+              <Link to="/contact" className="block px-4 py-2 hover:bg-blue-700">Contacto</Link>
+              {user?.role === "admin" && <Link to="/admin" className="block px-4 py-2 hover:bg-blue-700">Admin</Link>}
+              {user ? (
+                <button onClick={handleLogout} className="block w-full text-left px-4 py-2 hover:bg-blue-700">Cerrar Sesión</button>
+              ) : (
+                <Link to="/auth/login" className="block px-4 py-2 hover:bg-blue-700">Iniciar Sesión</Link>
+              )}
+            </div>
+          )}
         </nav>
       </header>
 

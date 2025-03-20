@@ -23,10 +23,10 @@ const AboutSection = () => {
                 className="relative h-[450px] bg-cover bg-center flex flex-col justify-center items-center text-white z-0"
                 style={{ backgroundImage: "url('https://res.cloudinary.com/josafat/image/upload/v1742145729/empresa_qrd3g4.jpg')" }}
             >
-                <h2 className="text-4xl font-bold mb-4 bg-black bg-opacity-50 px-4 py-2 rounded-xl z-10 relative">
+                <h2 className="text-6xl font-bold mb-4 bg-black bg-opacity-50 px-4 py-2 rounded-xl z-10 relative">
                     ¿Quiénes somos?
                 </h2>
-                <p className="text-base max-w-2xl bg-black bg-opacity-50 px-6 py-4 rounded-xl z-10 relative">
+                <p className="text-xl max-w-2xl bg-black bg-opacity-50 px-6 py-4 rounded-xl z-10 relative">
                     {about?.quienesSomos}
                 </p>
             </div>
@@ -38,8 +38,8 @@ const AboutSection = () => {
                         alt="Misión"
                         className="w-40 h-40 object-cover rounded-full shadow-lg mb-6"
                     />
-                    <h3 className="text-2xl font-bold text-black-700 mb-3">Misión</h3>
-                    <p className="text-sm leading-relaxed max-w-md">{about?.mision}</p>
+                    <h3 className="text-4xl font-bold text-black-700 mb-3">Misión</h3>
+                    <p className="text-xl leading-relaxed max-w-md">{about?.mision}</p>
                 </div>
                 <div className="flex flex-col items-center lg:items-start">
                     <img
@@ -47,8 +47,8 @@ const AboutSection = () => {
                         alt="Visión"
                         className="w-40 h-40 object-cover rounded-full shadow-lg mb-6"
                     />
-                    <h3 className="text-2xl font-bold text-black-700 mb-3">Visión</h3>
-                    <p className="text-sm leading-relaxed max-w-md">{about?.vision}</p>
+                    <h3 className="text-4xl font-bold text-black-700 mb-3">Visión</h3>
+                    <p className="text-xl leading-relaxed max-w-md">{about?.vision}</p>
                 </div>
             </div>
 
@@ -58,8 +58,8 @@ const AboutSection = () => {
                     alt="Antecedentes"
                     className="w-40 h-40 object-cover rounded-full shadow-lg mb-6"
                 />
-                <h3 className="text-2xl font-bold text-black-700 mb-3">Antecedentes</h3>
-                <p className="text-sm leading-relaxed max-w-md">{about?.antecedentes}</p>
+                <h3 className="text-4xl font-bold text-black-700 mb-3">Antecedentes</h3>
+                <p className="text-xl leading-relaxed max-w-md">{about?.antecedentes}</p>
             </div>
         </div>
     )

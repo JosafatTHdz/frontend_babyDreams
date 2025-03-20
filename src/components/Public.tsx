@@ -65,7 +65,10 @@ export default function Public({ user }: PublicProps) {
                                 <Link to="/" className="block px-4 py-2 hover:bg-gray-200">Ver Productos</Link>
                                 <Link to="/category" className="block px-4 py-2 hover:bg-gray-200">Categorías</Link>
                                 {user?.role === "admin" && (
-                                  <Link to="/admin/product/register" className="block px-4 py-2 hover:bg-gray-200">Agregar Producto</Link>
+                                  <>
+                                    <Link to="/admin/product/register" className="block px-4 py-2 hover:bg-gray-200">Agregar Producto</Link>
+                                    <Link to="/admin/product/modify" className="block px-4 py-2 hover:bg-gray-200">Administrar</Link>
+                                  </>
                                 )}
                             </div>
                         )}
