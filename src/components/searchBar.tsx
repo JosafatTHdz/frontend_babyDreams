@@ -2,7 +2,7 @@
 // Date: 20/01/2021
 // Import the necessary libraries and dependencies
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 
 // Type: Component
 const SearchBar = () => {
