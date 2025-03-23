@@ -91,10 +91,21 @@ export default function Public({ user }: BabyDreamsProps) {
 
               <Link to={'/admin/profile'}>Mi Perfil</Link>
 
-              <Link to={'admin/iot/control'}>IoT</Link>
+              <Link to="/admin/device">Dispositivos</Link>
 
               {user?.role === "admin" && (
-                <Link to="/admin" className="hover:text-gray-200">Admin</Link>
+                <div className="relative group" onMouseLeave={() => setMenuOpen(null)}>
+                  <button onMouseEnter={() => toggleMenu("admin")} className="flex items-center gap-2">
+                    Admin <FaChevronDown size={12} />
+                  </button>
+                  {menuOpen === "admin" && (
+                    <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40 z-40">
+                      <Link to="/admin/faq" className="block px-4 py-2 hover:bg-gray-200">FAQ</Link>
+                      <Link to="/admin/policies" className="block px-4 py-2 hover:bg-gray-200">Políticas</Link>
+                      <Link to="/admin/terms" className="block px-4 py-2 hover:bg-gray-200">Términos</Link>
+                    </div>
+                  )}
+                </div>
               )}
 
               {/* Botón de inicio o cierre de sesión */}
@@ -137,27 +148,27 @@ export default function Public({ user }: BabyDreamsProps) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white text-center p-6 mt-10 flex flex-row justify-between items-center">
+      <footer className="bg-gray-900 text-white text-center p-6 mt-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-0">
         <div className="mb-4">
           <h2 className="text-lg font-semibold">Enlaces de Interés</h2>
           <ul className="mt-2 space-y-2">
-            <li><a href="#" className="text-gray-300 hover:text-white transition">Políticas de privacidad</a></li>
-            <li><a href="#" className="text-gray-300 hover:text-white transition">Términos y condiciones</a></li>
-            <li><a href="#" className="text-gray-300 hover:text-white transition">Preguntas frecuentes</a></li>
+            <li><Link to="/policies" className="text-gray-300 hover:text-white transition">Políticas de privacidad</Link></li>
+            <li><Link to="/terms" className="text-gray-300 hover:text-white transition">Términos y condiciones</Link></li>
+            <li><Link to="/faq" className="text-gray-300 hover:text-white transition">Preguntas frecuentes</Link></li>
           </ul>
         </div>
 
         <div className="mb-4">
           <h2 className="text-lg font-semibold">Redes sociales</h2>
           <div className="flex space-x-4 mt-2">
-            <a href="#" className="text-gray-300 hover:text-white transition"><FaFacebook size={24} /></a>
-            <a href="#" className="text-gray-300 hover:text-white transition"><FaInstagram size={24} /></a>
+            <a href="#" aria-label="Facebook" className="text-gray-300 hover:text-white transition"><FaFacebook size={24} /></a>
+            <a href="#" aria-label="Instagram" className="text-gray-300 hover:text-white transition"><FaInstagram size={24} /></a>
           </div>
         </div>
 
         <div>
           <h2 className="text-lg font-semibold">Contacto</h2>
-          <p className="text-gray-300 mt-2">contacto@ejemplo.com</p>
+          <p className="text-gray-300 mt-2">babydreams@gmail.com</p>
         </div>
 
         <p className="text-gray-400 mt-6">&copy; {new Date().getFullYear()} Baby Dreams. Todos los derechos reservados.</p>

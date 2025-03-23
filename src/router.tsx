@@ -14,6 +14,13 @@ import AdminProducts from './views/ProductAdminView'
 import AboutView from './views/AboutView'
 import AboutAdmin from './views/AboutAdminView'
 import CunaBalanceo from './views/ControlIoTView'
+import FaQView from './views/FAQView'
+import FAQAdmin from './views/FAQAdmin'
+import PoliticasPrivacidad from './views/PoliciesView'
+import TerminosCondiciones from './views/TermsNConditions'
+import AdminPoliPage from './views/PoliciesAdminView'
+import AdminTerms from './views/TermsNConditionAdminView'
+import MisDispositivos from './views/DevicesView'
 
 export default function Router() {
     return(
@@ -29,7 +36,11 @@ export default function Router() {
                     <Route path='product/register' element={<RegisterProduct />} />
                     <Route path='product/modify' element={<AdminProducts />} />
                     <Route path='about/edit' element={<AboutAdmin />} />
-                    <Route path='iot/control' element={<CunaBalanceo />} />
+                    <Route path='control/:deviceId' element={<CunaBalanceo />} />
+                    <Route path='faq' element={<FAQAdmin />} />
+                    <Route path='policies' element={<AdminPoliPage />} />
+                    <Route path='terms' element={<AdminTerms />} />
+                    <Route path='device' element={<MisDispositivos />} />
                 </Route>
 
                 <Route element={<PublicLayout />} >
@@ -38,8 +49,9 @@ export default function Router() {
                     <Route path='/category' element={<CategoriesView />} />
                     <Route path='/category/:categoryId' element={<CategoryProductsView />} />
                     <Route path='/about' element={<AboutView />} />
-                    
-
+                    <Route path='/faq' element={<FaQView />} />
+                    <Route path='/Policies' element={<PoliticasPrivacidad />} />
+                    <Route path='/terms' element={<TerminosCondiciones />} />
                 </Route>
             </Routes>
         </BrowserRouter>

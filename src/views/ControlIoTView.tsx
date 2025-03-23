@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '../config/axios';
+import { useParams } from 'react-router-dom';
 
 // 🔹 Obtener datos en tiempo real desde el backend
-const fetchRealtimeData = async () => {
-    const { data } = await api.get("/iot/realtime");
+const fetchRealtimeData = async (deviceId: string) => {
+    const { data } = await api.get(`/iot/realtime/${deviceId}`)
     return data;
 };
 
@@ -64,12 +65,16 @@ const TarjetaControl = ({ titulo, descripcion, imagenEstatica, imagenAnimada, es
 
 export default function ControlCuna() {
     // 🔹 React Query para obtener datos en tiempo real
-    const { data, isLoading } = useQuery({
-        queryFn: fetchRealtimeData,
-        queryKey: ["realtimeData"],
-        refetchInterval: 5000, // 🔥 Actualizar cada 5s
-    });
+    // 🔹 Obtener deviceId de los parámetros de la URL
+    const { deviceId } = useParams<{ deviceId: string }>()
 
+    // 🔹 React Query para obtener datos en tiempo real
+    const { data, isLoading } = useQuery({
+        queryFn: () => fetchRealtimeData(deviceId!),
+        queryKey: ["realtimeData", deviceId],
+        refetchInterval: 5000, // 🔥 Actualizar cada 5s
+        enabled: !!deviceId, // Evita la consulta si `deviceId` es `undefined`
+    });
     // 🔹 Estados locales de los dispositivos
     const [estadoMotor, setEstadoMotor] = useState(false);
     const [estadoCarrusel, setEstadoCarrusel] = useState(false);
