@@ -7,3 +7,5 @@ export type Product = {
     price: number
     image: string
 } 
+
+export type ProductForm = Omit<Product, "_id">;

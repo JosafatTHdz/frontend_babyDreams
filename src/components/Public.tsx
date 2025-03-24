@@ -65,7 +65,7 @@ export default function Public({ user }: PublicProps) {
                 </button>
                 {menuOpen === "productos" && (
                   <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-48 z-40">
-                    <Link to="/" className="block px-4 py-2 hover:bg-gray-200">Ver Productos</Link>
+                    <Link to="/products" className="block px-4 py-2 hover:bg-gray-200">Ver Productos</Link>
                     <Link to="/category" className="block px-4 py-2 hover:bg-gray-200">Categorías</Link>
                     {user?.role === "admin" && (
                       <>
@@ -183,7 +183,7 @@ export default function Public({ user }: PublicProps) {
 
         <div>
           <h2 className="text-lg font-semibold">Contacto</h2>
-          <p className="text-gray-300 mt-2">babydreams@gmail.com</p>
+          <p className="text-gray-300 mt-2">soporte@babydreams.com</p>
         </div>
 
         <p className="text-gray-400 mt-6">

@@ -70,7 +70,7 @@ const PoliticasPrivacidad: React.FC = () => {
       <p className="text-base text-gray-600">
         Si tienes preguntas o inquietudes sobre esta política de privacidad,
         puedes contactarnos en{" "}
-        <strong className="text-primary">babydreams@gmail.com</strong>.
+        <strong className="text-primary">soporte@babydreams.com</strong>.
       </p>
     </section>
   )

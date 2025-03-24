@@ -2,6 +2,7 @@ import { isAxiosError } from "axios"
 import api from "../config/axios"
 import { User } from "../types"
 import { About } from "../types/about"
+import { ProductForm } from "../types/product"
 
 //User
 export async function getUser() {
@@ -59,6 +60,12 @@ export const deleteProduct = async (productId: string) => {
         if (isAxiosError(error) && error.response)
         throw new Error(error.response.data.error)
     }
+}
+
+// Actualizar un producto
+export const updateProduct = async ({ id, data }: { id: string; data: ProductForm }) => {
+  const res = await api.patch(`/product/update/${id}`, data);
+  return res
 }
 
 //Category
