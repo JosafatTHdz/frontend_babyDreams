@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
-import { getProducts } from "../api/BabyDreamsAPI"
+import { getCategories, getProducts } from "../api/BabyDreamsAPI"
 import { Product } from "../types/product"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { Category } from "../types/category"
 
 const PRODUCTS_PER_PAGE = 12
 
@@ -12,6 +13,14 @@ const Home = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
+    retry: 1,
+    refetchOnWindowFocus: false,
+  })
+
+  const { data: category } = useQuery({
+    queryKey: ["category"],
+    queryFn: getCategories,
+    enabled: !!data,
     retry: 1,
     refetchOnWindowFocus: false,
   })
@@ -33,9 +42,11 @@ const Home = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage => currentPage + 1)
   }
 
+  const categoryMap = new Map((category ?? []).map((cat: Category) => [cat._id, cat.name]))
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h2 className="text-2xl font-bold text-center mb-6">🛒 Productos Disponibles</h2>
+      <h2 className="text-2xl font-bold text-center mb-6">🛒 Catálogo Disponible</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {currentProducts.map((product: Product) => (
           <div
@@ -52,7 +63,7 @@ const Home = () => {
 
             <div className="flex flex-col flex-grow justify-between mt-4 w-full text-center">
               <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
-              <p className="text-sm text-gray-500">{product.category}</p>
+              <p className="text-sm text-gray-500">{String(categoryMap.get(product.category))}</p>
               <p className="text-sm text-gray-600 mt-2">{product.description}</p>
               <Link to={`/product/${product._id}`} className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">
                 Ver Detalles

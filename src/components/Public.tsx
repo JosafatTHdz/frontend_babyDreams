@@ -6,6 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { User } from "../types";
 import { logoutUser } from "../api/BabyDreamsAPI";
 import { useState } from "react";
+import Breadcrumb from "./breadCrumb";
 
 type PublicProps = {
   user: User | null;
@@ -146,6 +147,7 @@ export default function Public({ user }: PublicProps) {
           )}
         </nav>
       </header>
+        <Breadcrumb />
 
       {/* Main Content */}
       <main className="flex-grow container mx-auto p-5">

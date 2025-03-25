@@ -9,6 +9,9 @@ const fetchRealtimeData = async (deviceId: string) => {
     return data;
 };
 
+const token = localStorage.getItem('token');
+
+
 // 🔹 Tarjeta de Control para dispositivos IoT
 interface TarjetaControlProps {
     titulo: string;
@@ -25,11 +28,18 @@ const TarjetaControl = ({ titulo, descripcion, imagenEstatica, imagenAnimada, es
         const nuevoEstado = !estado;
         console.log(`🔹 Cambiando estado de ${titulo}:`, nuevoEstado);
         setEstado(nuevoEstado);
-        fetch(`http://localhost:4000${puntoDeApi}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ estado: nuevoEstado })
-        }).catch(error => console.error(`Error cambiando el estado de ${titulo}:`, error));
+    
+        api.post(puntoDeApi, { estado: nuevoEstado }, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            console.log(`Estado actualizado para ${titulo}:`, response.data);
+        })
+        .catch(error => {
+            console.error(`Error cambiando el estado de ${titulo}:`, error);
+        });
     };
 
     return (
