@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '../config/axios';
 import { useParams } from 'react-router-dom';
@@ -6,11 +6,11 @@ import { useParams } from 'react-router-dom';
 // 🔹 Obtener datos en tiempo real desde el backend
 const fetchRealtimeData = async (deviceId: string) => {
     const { data } = await api.get(`/iot/realtime/${deviceId}`)
+    console.log(data)
     return data;
-};
+}
 
 const token = localStorage.getItem('token');
-
 
 // 🔹 Tarjeta de Control para dispositivos IoT
 interface TarjetaControlProps {
@@ -74,22 +74,27 @@ const TarjetaControl = ({ titulo, descripcion, imagenEstatica, imagenAnimada, es
 };
 
 export default function ControlCuna() {
-    // 🔹 React Query para obtener datos en tiempo real
-    // 🔹 Obtener deviceId de los parámetros de la URL
     const { deviceId } = useParams<{ deviceId: string }>()
 
-    // 🔹 React Query para obtener datos en tiempo real
     const { data, isLoading } = useQuery({
         queryFn: () => fetchRealtimeData(deviceId!),
         queryKey: ["realtimeData", deviceId],
-        refetchInterval: 5000, // 🔥 Actualizar cada 5s
-        enabled: !!deviceId, // Evita la consulta si `deviceId` es `undefined`
-    });
-    // 🔹 Estados locales de los dispositivos
-    const [estadoMotor, setEstadoMotor] = useState(false);
-    const [estadoCarrusel, setEstadoCarrusel] = useState(false);
+        refetchInterval: 5000,
+        enabled: !!deviceId, 
+    })
+    
+    const [estadoMotor, setEstadoMotor] = useState(false)
+    const [estadoCarrusel, setEstadoCarrusel] = useState(false)
 
-    if (isLoading) return <p className="text-center text-gray-600">Cargando datos...</p>;
+    // 🔄 Sincronizar estados locales con los datos en tiempo real
+    useEffect(() => {
+        if (data) {
+            setEstadoMotor(data.balanceoActivo)
+            setEstadoCarrusel(data.carruselActivo)
+        }
+    }, [data])
+
+    if (isLoading) return <p className="text-center text-gray-600">Cargando datos...</p>
 
     return (
         <div className="flex flex-col items-center bg-blue-100 min-h-screen p-12">

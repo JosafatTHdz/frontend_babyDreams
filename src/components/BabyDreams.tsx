@@ -100,10 +100,12 @@ export default function Public({ user }: BabyDreamsProps) {
                     Admin <FaChevronDown size={12} />
                   </button>
                   {menuOpen === "admin" && (
-                    <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-40 z-40">
+                    <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-md w-56 z-40">
                       <Link to="/admin/faq" className="block px-4 py-2 hover:bg-gray-200">FAQ</Link>
                       <Link to="/admin/policies" className="block px-4 py-2 hover:bg-gray-200">Políticas</Link>
                       <Link to="/admin/terms" className="block px-4 py-2 hover:bg-gray-200">Términos</Link>
+                      <Link to="/admin/users/device" className="block px-4 py-2 hover:bg-gray-200">Dispositivos</Link>
+                      <Link to="/admin/users" className="block px-4 py-2 hover:bg-gray-200">Usuarios</Link>
                     </div>
                   )}
                 </div>

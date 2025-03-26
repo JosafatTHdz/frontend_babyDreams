@@ -1,4 +1,5 @@
 export type User = {
+    _id: string
     handle: string
     name: string,
     email: string,

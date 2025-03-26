@@ -24,6 +24,8 @@ import MisDispositivos from './views/DevicesView'
 import Contacto from './views/ContactoView'
 import Welcome from './views/HomeView'
 import EditProduct from './views/EditProductView'
+import UsuariosPorDispositivo from './views/usersDeviceView'
+import AdminUsuarios from './views/UsersAdmin'
 
 export default function Router() {
     return(
@@ -45,6 +47,8 @@ export default function Router() {
                     <Route path='policies' element={<AdminPoliPage />} />
                     <Route path='terms' element={<AdminTerms />} />
                     <Route path='device' element={<MisDispositivos />} />
+                    <Route path='users/device' element={<UsuariosPorDispositivo />} />
+                    <Route path='users' element={<AdminUsuarios />} />
                 </Route>
 
                 <Route element={<PublicLayout />} >
