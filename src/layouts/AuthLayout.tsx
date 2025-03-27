@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { logocompleto } from "../assets/img";
+import { logoinv } from "../assets/img";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { Toaster } from "sonner";
 
@@ -8,8 +8,11 @@ export default function AuthLayout() {
     <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header */}
       <header className="flex justify-between items-center bg-blue-400 p-4 shadow-md">
-        <div className="flex items-center">
-          <img src={logocompleto} alt="Logo" className="w-45 h-19 mr-3" />
+      <div className="flex items-center">
+          <Link to="/">
+            <img src={logoinv} alt="Logo" className="w-16 h-14 mr-3" />
+          </Link>
+          <Link to={'/'} className="text-white text-lg font-bold font-sans">BabyDreams</Link>
         </div>
 
         <nav className="flex space-x-6">

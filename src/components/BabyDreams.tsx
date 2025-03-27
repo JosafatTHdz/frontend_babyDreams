@@ -39,7 +39,7 @@ export default function Public({ user }: BabyDreamsProps) {
       <header className="flex justify-between items-center bg-blue-400 p-4 shadow-md">
         <div className="flex items-center">
           <Link to={'/'}><img src={logoinv} alt="Logo" className="w-16 h-14 mr-3" /></Link>
-          <h1 className="text-white text-lg font-bold font-sans">Baby Dreams</h1>
+          <Link to={'/'} className="text-white text-lg font-bold font-sans">BabyDreams</Link>
         </div>
 
         <form onSubmit={handleSearch} className="flex items-center bg-white rounded-md px-3 py-2 w-full max-w-lg">

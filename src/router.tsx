@@ -26,6 +26,8 @@ import Welcome from './views/HomeView'
 import EditProduct from './views/EditProductView'
 import UsuariosPorDispositivo from './views/usersDeviceView'
 import AdminUsuarios from './views/UsersAdmin'
+import ProductoEstrella from './views/StarProductView'
+import RegisterDevice from './views/RegisterDeviceView'
 
 export default function Router() {
     return(
@@ -62,6 +64,8 @@ export default function Router() {
                     <Route path='/Policies' element={<PoliticasPrivacidad />} />
                     <Route path='/terms' element={<TerminosCondiciones />} />
                     <Route path='/contact' element={<Contacto />} />
+                    <Route path='/product/crib' element={<ProductoEstrella />} />
+                    <Route path='/register-device' element={<RegisterDevice />} />
                 </Route>
             </Routes>
         </BrowserRouter>
