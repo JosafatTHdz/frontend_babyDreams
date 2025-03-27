@@ -31,8 +31,8 @@ const EditProfile = () => {
         }
     })
     
-    const handleUpdateProfile = (formData: User) => {
-        updateProfileMutation.mutate(formData)
+    const handleUpdateProfile = (formData: Omit<User, '_id'>) => {
+        updateProfileMutation.mutate({ ...formData, _id: data._id });
     };
 
     return (

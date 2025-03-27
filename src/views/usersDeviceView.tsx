@@ -1,10 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../config/axios";
 import { Device } from "../types/device";
-import { User } from "../types";
+
+export interface UserWithDevices {
+  _id: string;
+  name: string;
+  email: string;
+  devices: Device[];
+}
 
 export default function UsuariosConDispositivos() {
-    const { data: users, isLoading, isError } = useQuery<User[]>({
+    const { data: users, isLoading, isError } = useQuery<UserWithDevices[]>({
       queryKey: ["admin-users-with-devices"],
       queryFn: async () => {
         const res = await api.get("/admin/usuarios-dispositivos");
