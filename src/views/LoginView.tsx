@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { GoTriangleRight } from "react-icons/go";
 import { LoginForm } from "../types";
 import { isAxiosError } from 'axios';
@@ -91,14 +90,6 @@ const Login = () => {
           <span className="mx-3 text-gray-500 font-semibold">O</span>
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
-
-        <button className="w-full flex items-center justify-center p-3 bg-blue-700 text-white rounded-md font-bold mb-3 hover:bg-blue-800 transition">
-          <FaFacebookF size={20} className="mr-3" /> INICIAR SESIÓN CON FACEBOOK
-        </button>
-
-        <button className="w-full flex items-center justify-center p-3 bg-red-600 text-white rounded-md font-bold hover:bg-red-700 transition">
-          <FaGoogle size={20} className="mr-3" /> INICIAR SESIÓN CON GOOGLE
-        </button>
       </div>
     </div>
   );
