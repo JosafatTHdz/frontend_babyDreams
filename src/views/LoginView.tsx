@@ -84,12 +84,6 @@ const Login = () => {
             INICIAR SESIÓN
           </button>
         </form>
-
-        <div className="flex items-center my-5">
-          <div className="flex-1 h-px bg-gray-300"></div>
-          <span className="mx-3 text-gray-500 font-semibold">O</span>
-          <div className="flex-1 h-px bg-gray-300"></div>
-        </div>
       </div>
     </div>
   );
